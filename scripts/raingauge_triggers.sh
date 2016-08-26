@@ -42,13 +42,13 @@ trg_plugin() {
     # See which trigger set off collector by peeking in /var/log/pt-stalk.log
     # Checks are formatted this way to handle comparisons involving floating point numbers
     # To add new trigger, copy the format below and change variables, and increment echo number
-    if (( "$(echo "$seconds_behind_master" | awk '{print ($1 > 10)}')" )); then
+    if (( "$(echo "$seconds_behind_master" | awk '{print ($1 > 60)}')" )); then
         echo '1'        # seconds_behind_master
-    elif (( "$(echo "$threads_running" | awk '{print ($1 > 150)}')" )); then
+    elif (( "$(echo "$threads_running" | awk '{print ($1 > 250)}')" )); then
         echo '2'        # threads_running
-    elif (( "$(echo "$cpu_percentage" | awk '{print ($1 > 50)}')" )); then
+    elif (( "$(echo "$cpu_percentage" | awk '{print ($1 > 100)}')" )); then
         echo '3'        # cpu_percentage
-    elif (( "$(echo "$threads_created" | awk '{print ($1 > 100)}')" )); then
+    elif (( "$(echo "$threads_created" | awk '{print ($1 > 200)}')" )); then
         echo '4'        # threads_created
     # elif (( "$(echo "$_triggername" | awk '{print ($1 _comparison _threshold)}')" )); then
         # echo '5'	# _triggername
