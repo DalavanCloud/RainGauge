@@ -1158,7 +1158,8 @@ stalk() {
 # ###########################################################################
 
 main() {
-   trap sigtrap SIGHUP SIGINT SIGTERM
+   # Slack - disable sigtrap, just shut it down
+   # trap sigtrap SIGHUP SIGINT SIGTERM
 
    # Note: $$ is the parent's PID, but we're a child proc.
    # Bash 4 has $BASHPID but we can't rely on that.  Consequently,
