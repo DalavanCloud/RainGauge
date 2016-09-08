@@ -48,7 +48,7 @@ trg_plugin() {
     #
     # To add new trigger, copy the format below and change variables
 
-    val="$(echo "$seconds_behind_master" | awk '{print ($1 > 60)}')"
+    val="$(echo "$seconds_behind_master" | awk '{print ($1 > 60 && $1 != "NULL")}')"
     echo "$val|10|seconds_behind_master"
 
     val="$(echo "$threads_running" | awk '{print ($1 > 250)}')"
